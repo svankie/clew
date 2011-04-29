@@ -1,0 +1,6 @@
+CREATE TABLE events (
+    id serial primary key,
+    event_name varchar(256),
+    event_date date,
+    event_description text
+);
