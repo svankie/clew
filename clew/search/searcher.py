@@ -11,10 +11,13 @@ class EventSearcher(object):
         self.parser = QueryParser("description", index.schema)
 
     def search(self, query):
+
+        data = None
         try:
             query = self.parser.parse(query)
-            res = self.searcher.search(query)
-
-            return res
+            result = self.searcher.search(query)
+            data = [{"title": res["title"], "description": res["description"], "id": res["id"]} for res in result]
         finally:
             self.searcher.close()
+
+        return data

@@ -13,7 +13,7 @@ from clew import app
 def search():
     es = EventSearcher()
     results = es.search(request.args.get('search_query', ""))
-    return results
+    return render_template('search_results.html', results=results)
 
 # EVENT VIEWS
 @app.route('/', methods=['GET', 'POST'])

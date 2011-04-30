@@ -2,7 +2,9 @@ __author__ = 'svankiE'
 
 import os
 
+from datetime import time, datetime
 from whoosh.index import create_in
+
 from clew.search.index import schema
 
 class IndexBuilder(object):
@@ -18,6 +20,8 @@ class IndexBuilder(object):
 
     def build(self, events):
         for event in events:
-            date = unicode(event.date.strftime('%Y-%m-%d'))
-            self.writer.add_document(title=event.name, description=event.description, date=date)
+            self.writer.add_document(title=event.name,
+                                     description=event.description,
+                                     date=datetime.combine(event.date, time()),
+                                     id=event.id)
         self.writer.commit()
