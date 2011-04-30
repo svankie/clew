@@ -4,3 +4,79 @@ CREATE TABLE events (
     event_date date,
     event_description text
 );
+
+-- TODO: manitomani
+
+CREATE TABLE artists (
+  id serial primary key,
+  artist_name varchar(64),
+  artist_description varchar(2048)
+);
+
+CREATE TABLE events_artists (
+  event_id integer references events(id),
+  artist_id integer references artists(id)
+);
+
+CREATE TABLE venues (
+  id serial primary key,
+  venue_name varchar(64),
+  venue_description varchar(2048)
+);
+
+CREATE TABLE events_venues (
+  event_id integer references events(id),
+  venue_id integer references venues(id)
+);
+
+CREATE TABLE users (
+  id serial primary key,
+  full_name varchar(32) not null,
+  username varchar(16) not null,
+  "password" varchar(8) not null
+);
+
+CREATE TABLE events_users (
+   event_id integer references events(id),
+   user_id integer references users(id)
+);
+
+CREATE TABLE agendas (
+  id serial primary key,
+  user_id integer references users(id)
+);
+
+CREATE TABLE users_agendas (
+  user_id integer references users(id),
+  agenda_id integer references agendas(id)
+);
+
+CREATE TABLE shouts (
+  id serial primary key,
+  user_id integer references users(id),
+  message text
+);
+
+CREATE TABLE invitations (
+  id serial primary key,
+  rsvp boolean default false,
+  event_id integer references events(id),
+  user_id integer references users(id)
+);
+
+CREATE TABLE wishlists (
+  id serial primary key,
+  user_id integer references users(id)
+);
+
+CREATE TABLE users_wishlists (
+  user_id integer references users(id),
+  wishlist_id integer references wishlists(id)
+);
+
+CREATE TABLE looping_searches (
+  id serial primary key,
+  user_id integer references users(id),
+  wishlist_id integer references wishlists(id),
+  query text
+);
