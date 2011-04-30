@@ -7,7 +7,8 @@ __author__ = 'svankiE'
 if __name__ == '__main__':
     feeds = [
         "http://ws.audioscrobbler.com/1.0/artist/Pain%2Bof%2BSalvation/events.rss",
-        "http://ws.audioscrobbler.com/1.0/artist/Imogen%2BHeap/events.rss"
+        "http://ws.audioscrobbler.com/1.0/artist/Imogen%2BHeap/events.rss",
+        "http://feeds.feedburner.com/vuenoz/hoy"
     ]
     scraper = GenericRSSParser(feeds)
     scraper.retrieve_events()

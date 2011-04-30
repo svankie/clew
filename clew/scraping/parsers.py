@@ -41,7 +41,7 @@ class GenericRSSParser(object):
             return -1
 
         description = item.description
-        date = self.get_datetime_obj(item.date)
+        date = self.get_datetime_obj(item.date) if hasattr(item, "date") else datetime.now()
 
         ev = Event(title, date, description)
         Event.query.session.add(ev)
