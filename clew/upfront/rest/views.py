@@ -1,18 +1,18 @@
 from flask.globals import request
+from flask.templating import render_template
+
+from clew.core.model import Event
 
 __author__ = 'svankiE'
 
 from clew import app
 
-@app.route('/', methods=['GET'])
-def index():
-    return "This is Clew. Your worldwide cultural activity recommendation service."
-
 # EVENT VIEWS
-@app.route('/events', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def get_or_post_events():
     if request.method == 'GET':
-        pass
+        events = Event.query.all()
+        return render_template('index.html', events=events)
     if request.method == 'POST':
         pass
     else:

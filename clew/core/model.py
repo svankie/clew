@@ -1,6 +1,6 @@
 __author__ = 'svankiE'
 
-from clew.core import db
+from clew.core.db import db
 
 events_artists = db.Table('events_artists',
     db.Column("event_id", db.Integer, db.ForeignKey("events.id")),

@@ -8,7 +8,7 @@ from clew.core.model import Event
 
 class GenericRSSParser(object):
 
-    DATE_FORMAT = '%Y-%m-%d'
+    DATE_FORMAT = '%a, %d %b %Y %H:%M:%S'
 
     def __init__(self, feeds):
         if not feeds:
@@ -27,7 +27,7 @@ class GenericRSSParser(object):
                 feeds = list(feeds)
             for feed in feeds:
                 r = feedparser.parse(feed)
-                for item in r.items:
+                for item in r.entries:
                     self.build_event(item)
         else:
             raise Exception("Hey! You just gave me EMPTYNESS.")
@@ -36,6 +36,10 @@ class GenericRSSParser(object):
 
     def build_event(self, item):
         title = item.title
+
+        if Event.query.filter_by(name=title).all():
+            return -1
+
         description = item.description
         date = self.get_datetime_obj(item.date)
 
@@ -44,7 +48,8 @@ class GenericRSSParser(object):
 
     def get_datetime_obj(self, str):
         if str:
-            return datetime.strptime(str, DATE_FORMAT)
+            str = str.split("+")[0].strip()
+            return datetime.strptime(str, self.DATE_FORMAT)
         else:
             return "bad parsing"
 

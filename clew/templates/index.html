@@ -27,7 +27,7 @@
         <h2>See what's happening right now. <i>Live</i>.</h2>
         <ul id="events">
             {% for event in events %}
-            <li id="event-{{event.id}}"><a href="/events/{{event.id}}">{{event.title}}</a></li>
+            <li id="event-{{event.id}}"><a href="/events/{{event.id}}">{{event.name}}</a></li>
             {% endfor %}
         </ul>
     </div>
