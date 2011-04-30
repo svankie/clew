@@ -2,10 +2,19 @@ from flask.globals import request
 from flask.templating import render_template
 
 from clew.core.model import Event
+from clew.search.searcher import EventSearcher
 
 __author__ = 'svankiE'
 
 from clew import app
+
+# TESTING.-
+@app.route("/search", methods=['GET'])
+def search():
+    es = EventSearcher()
+    terms = unicode(" ".join(request.query_string.split("=")[1].split("+")))
+    results = es.search(terms)
+    return results
 
 # EVENT VIEWS
 @app.route('/', methods=['GET', 'POST'])
