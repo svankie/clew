@@ -1,12 +1,12 @@
 __author__ = 'svankiE'
 
-from whoosh.qparser.default import QueryParser
 from whoosh.index import open_dir
+from whoosh.qparser.default import QueryParser
 
 class EventSearcher(object):
 
     def __init__(self):
-        index = open_dir("index")
+        index = open_dir("search/index")
         self.searcher = index.searcher()
         self.parser = QueryParser("description", index.schema)
 

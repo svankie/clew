@@ -4,8 +4,6 @@ from clew.core.model import Event
 from clew.search.index_builder import IndexBuilder
 
 if __name__ == '__main__':
-    # TODO: check for duplicates. The Whoosh documentation.
-
     print "Building object index..."
     idx_builder = IndexBuilder()
     events = Event.query.all()
