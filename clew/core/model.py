@@ -2,6 +2,8 @@ __author__ = 'svankiE'
 
 from clew.core.db import db
 
+from datetime import datetime, time
+
 events_artists = db.Table('events_artists',
     db.Column("event_id", db.Integer, db.ForeignKey("events.id")),
     db.Column("artist_id", db.Integer, db.ForeignKey("artists.id"))
@@ -39,6 +41,20 @@ class Event(db.Model):
         self.name = name
         self.date = date
         self.description = description
+
+    def to_json(self, from_builder=False):
+        if from_builder:
+            return dict(id=self.id,
+                title=self.name,
+                date=datetime.combine(self.date, time()) if self.date is not None else datetime.now(),
+                description=self.description
+            )
+        else:
+            dict(id=self.id,
+                title=self.name,
+                date=datetime.strftime(self.date, '%Y-%m-%d') if self.date is not None else datetime.now(),
+                description=self.description
+            )
 
 class Artist(db.Model):
     __tablename__ = 'artists'

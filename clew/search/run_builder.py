@@ -5,11 +5,12 @@ from clew.search.index_builder import IndexBuilder
 
 if __name__ == '__main__':
     print "Building object index..."
-    idx_builder = IndexBuilder()
+    builder = IndexBuilder()
     events = Event.query.all()
 
     if events:
-        idx_builder.build(events)
+        # for now, building clean, shiny indexes.
+        builder.build_index(events, clean=True)
         print "Done."
     else:
         print "No events to be added."

@@ -7,7 +7,7 @@
 <body>
 {% block body %}
 <ul id="search_results">
-    <h2>THIS WERE THE RESULTS:</h2>
+    <h2>THIS ARE THE RESULTS:</h2>
     {% for result in results %}
     <li id="event-{{result.id}}"><a href="/events/{{result.id}}">{{result.title}}</a> || {{result.description}}</li>
     {% endfor %}
