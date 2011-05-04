@@ -1,0 +1,27 @@
+/*
+CSS class no. 1. Let's see.
+*/
+
+#container {
+    margin: 0 auto; /* centering te layout horizontally */
+    width: 960px;
+}
+
+#header {
+    width: 100%;
+    background-color: blue;
+}
+
+#description {
+    text-align: center;
+}
+
+#content {
+    width: 960px;
+    display: inline; 
+}
+
+#footer {
+    width: 100%;
+    clear: both;
+}

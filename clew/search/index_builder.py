@@ -55,7 +55,7 @@ class IndexBuilder(object):
                     events_to_index.add(indexed_event)
 
         for event.id in events_to_index or event.id not in indexed_events:
-            writer.add_document(self.get_values(event))
+            writer.add_document(**self.get_values(event))
         writer.commit(optimize=True)
 
     def scratch_build(self, events):

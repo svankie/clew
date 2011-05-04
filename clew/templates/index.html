@@ -3,39 +3,44 @@
 <html>
 <head>
     <title>Clew</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
 </head>
 <body>
-    <div id="register-login">
-        <div align="right"><a href="#">register</a> | <a href="#">log in</a></div>
-    </div>
+    <div id="container">
 
-    <div id="intro" style="text-align:center;">
-        <p>Looking for a place to go or thing to do? <strong>Clew</strong> is your <i>meta</i>place and your <i>meta</i>thing.
-            <br/>Clew is your worldwide cultural activity recommendation platform. Try it out!</p>
-    </div>
+        <div id="header">
+            <div id="register_or_login" align="right">
+                <a href="#">register</a> | <a href="#">log in</a>
+            </div>
 
-    <div id="search" align="center">
-        <form id="search_box" action="/search" method="get">
-            <input type="text" id="search_query" name="search_query" style="width:400px;height:65px;font-size:15pt;" value="What's your favorite place, artist or thing?" />
-            <input type="submit" value="GO" style="width:75px;height:70px;">
-        </form>
-    </div>
+            <div id="description">
+                <p>Looking for a place to go or thing to do? <strong>Clew</strong> is your <i>meta</i>place and your <i>meta</i>thing.
+                <br/>Clew is your worldwide cultural activity recommendation platform. Try it out!</p>
+            </div>
+        </div>
 
-    {% block body %}
-    <div id="the_grid">
-        <!-- for now, "the_list" -->
-        <p>See what's happening right now at <strong>Buenos Aires, Argentina</strong> (<a href="#">change location</a>).</p>
-        <ul id="events">
-            {% for event in events %}
-            <li id="event-{{event.id}}"><a href="/events/{{event.id}}">{{event.name}}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endblock %}
+        <div id="search" align="center">
+            <form id="search_box" action="/search" method="get">
+                <input type="text" id="search_query" name="search_query" style="width:400px;height:65px;font-size:15pt;" value="What's your favorite place, artist or thing?" />
+                <input type="submit" value="GO" style="width:75px;height:70px;">
+            </form>
+        </div>
 
-    <div id="footer" align="center">
-        <p style="font-size:9pt;">Clew 2011. All rights reserved.</p>
-    </div>
+        {% block body %}
+        <div id="the_grid">
+            <!-- for now, "the_list" -->
+            <p>See what's happening right now at <strong>Buenos Aires, Argentina</strong> (<a href="#">change location</a>).</p>
+            <ul id="events">
+                {% for event in events %}
+                <li id="event-{{event.id}}"><a href="/events/{{event.id}}">{{event.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endblock %}
 
+        <div id="footer" align="center">
+            <p style="font-size:9pt;">Clew 2011. All rights reserved.</p>
+        </div>
+    </div>
 </body>
 </html>

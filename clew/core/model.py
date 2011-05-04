@@ -52,7 +52,7 @@ class Event(db.Model):
         else:
             dict(id=self.id,
                 title=self.name,
-                date=datetime.strftime(self.date, '%Y-%m-%d') if self.date is not None else datetime.now(),
+                date=datetime.strftime(self.date, '%Y-%m-%d'),
                 description=self.description
             )
 

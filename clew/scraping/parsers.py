@@ -19,15 +19,12 @@ class GenericRSSParser(object):
         # caching
         feeds = self.feeds
         
-        if feeds:
-            if not isinstance(feeds, list):
-                feeds = list(feeds)
-            for feed in feeds:
-                r = feedparser.parse(feed)
-                for item in r.entries:
-                    self.build_event(item)
-        else:
-            raise Exception("Hey! You just gave me EMPTYNESS.")
+        if not isinstance(feeds, list):
+            feeds = list(feeds)
+        for feed in feeds:
+            r = feedparser.parse(feed)
+            for item in r.entries:
+                self.build_event(item)
 
         Event.query.session.commit()
 
